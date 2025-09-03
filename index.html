@@ -2,24 +2,116 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Pramod Education Apps</title>
+  <title>Rai Tech Creations Education Apps</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
-    body { 
-      font-family: Arial, sans-serif; 
-      text-align: center; 
-      margin-top: 80px; 
-      background: #f9f9f9;
+    /* Reset & Base */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: "Segoe UI", Tahoma, sans-serif;
+      background: linear-gradient(135deg, #f0f4ff, #ffffff);
       color: #333;
+      line-height: 1.6;
     }
-    h1 { color: #0070f3; }
-    p { font-size: 18px; }
-    footer { margin-top: 50px; font-size: 14px; color: #777; }
+
+    /* Header */
+    header {
+      background: linear-gradient(135deg, #0070f3, #0051a8);
+      color: #fff;
+      padding: 60px 20px;
+      text-align: center;
+    }
+    header h1 {
+      font-size: 40px;
+      margin-bottom: 10px;
+    }
+    header p {
+      font-size: 18px;
+      opacity: 0.9;
+    }
+
+    /* App Container */
+    .content {
+      max-width: 1000px;
+      margin: 40px auto;
+      padding: 20px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 25px;
+    }
+
+    /* App Card */
+    .app {
+      background: #fff;
+      border-radius: 16px;
+      padding: 25px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+      text-align: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .app:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.12);
+    }
+    .app h2 {
+      color: #0070f3;
+      margin-bottom: 12px;
+      font-size: 24px;
+    }
+    .app p {
+      font-size: 16px;
+      margin-bottom: 15px;
+    }
+    .badge img {
+      width: 200px;
+      transition: transform 0.2s ease;
+    }
+    .badge img:hover {
+      transform: scale(1.05);
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: #f1f1f1;
+      margin-top: 40px;
+      font-size: 14px;
+      color: #555;
+    }
   </style>
 </head>
 <body>
-  <h1>Welcome to Pramod’s Education Apps</h1>
-  <p>Our mission is to provide simple, effective, and interactive learning tools for students.</p>
-  <p>You can find our apps on the <strong>Google Play Store</strong>.</p>
+  <header>
+    <h1>📚 Pramod Education Apps</h1>
+    <p>Smart, simple, and interactive learning for everyone.</p>
+  </header>
+
+  <div class="content">
+
+    <!-- App 1 -->
+    <div class="app">
+      <h2>📘 Math Learning</h2>
+      <p>A fun and interactive way to practice mathematics for students.</p>
+      <div class="badge">
+        <a href="https://play.google.com/store/apps/details?id=com.education.brainymath" target="_blank">
+          <img src="https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png" alt="Get it on Google Play">
+        </a>
+      </div>
+    </div>
+
+    <!-- App 2 -->
+    <div class="app">
+      <h2>📖 English Learning</h2>
+      <p>Improve vocabulary, grammar, and communication with easy exercises.</p>
+      <div class="badge">
+        <a href="https://play.google.com/store/apps/details?id=com.kids.education.wordgalaxy" target="_blank">
+          <img src="https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png" alt="Get it on Google Play">
+        </a>
+      </div>
+    </div>
+
+  </div>
 
   <footer>
     © 2025 Pramod Education Apps. All Rights Reserved.
