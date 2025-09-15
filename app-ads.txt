@@ -1,4 +1,5 @@
 google.com, pub-2298997787917936, DIRECT, f08c47fec0942fa0
+google.com, pub-5782702249889339, DIRECT, f08c47fec0942fa0
 algorix.co, 54616, RESELLER, 5b394c12fea27a1d
 axonix.com, 59107, RESELLER, bc385f2b4a87b721
 pubwise.io, 22376824, RESELLER, c327c91a93a7cdd3
