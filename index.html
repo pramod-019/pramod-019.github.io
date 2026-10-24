@@ -1,356 +1,2108 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Rai Tech Labs | Apps</title>
+    <title>Rai Tech Labs | Apps That Simplify Life</title>
 
-  <meta name="description"
-        content="Explore apps developed by Rai Tech Labs. Smart, simple, and useful apps for everyday life and learning.">
+    <meta name="description"
+          content="Discover innovative Android apps from Rai Tech Labs. Explore ORBYNIQ for notification management, Math Learning, and English Learning.">
 
-  <style>
-    /* ==============================
-       RESET & BASE
-    ============================== */
+    <meta name="theme-color" content="#080b18">
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    <meta property="og:title" content="Rai Tech Labs | Apps That Simplify Life">
+    <meta property="og:description"
+          content="Discover useful Android apps designed to make everyday life simpler.">
+    <meta property="og:type" content="website">
 
-    html {
-      scroll-behavior: smooth;
-    }
+    <style>
+        /* ========================================
+           DESIGN SYSTEM
+        ======================================== */
 
-    body {
-      font-family: "Segoe UI", Tahoma, Arial, sans-serif;
-      background: linear-gradient(135deg, #f0f4ff, #ffffff);
-      color: #333;
-      line-height: 1.6;
-      min-height: 100vh;
-    }
+        :root {
+            --bg: #080b18;
+            --bg-secondary: #0d1225;
+            --surface: rgba(255, 255, 255, 0.045);
+            --surface-hover: rgba(255, 255, 255, 0.075);
+            --border: rgba(255, 255, 255, 0.10);
 
-    a {
-      text-decoration: none;
-    }
+            --text: #f5f7ff;
+            --muted: #a5aec8;
 
-    /* ==============================
-       HEADER
-    ============================== */
+            --blue: #4d8dff;
+            --purple: #9565ff;
+            --pink: #e65bff;
+            --green: #63e6be;
 
-    header {
-      background: linear-gradient(135deg, #0070f3, #0051a8);
-      color: #ffffff;
-      padding: 70px 20px;
-      text-align: center;
-    }
+            --gradient: linear-gradient(
+                115deg,
+                #4d8dff 0%,
+                #9565ff 55%,
+                #e65bff 100%
+            );
 
-    header h1 {
-      font-size: 42px;
-      font-weight: 700;
-      margin-bottom: 12px;
-    }
+            --container: 1180px;
+            --radius: 24px;
+        }
 
-    header p {
-      font-size: 19px;
-      opacity: 0.92;
-      max-width: 650px;
-      margin: 0 auto;
-    }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    /* ==============================
-       APPS SECTION
-    ============================== */
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 90px;
+        }
 
-    .content {
-      max-width: 1100px;
-      margin: 45px auto;
-      padding: 20px;
+        body {
+            font-family: Inter, -apple-system, BlinkMacSystemFont,
+                         "Segoe UI", Arial, sans-serif;
 
-      display: grid;
-      grid-template-columns: repeat(
-        auto-fit,
-        minmax(300px, 1fr)
-      );
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
 
-      gap: 28px;
-    }
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            z-index: -2;
+            pointer-events: none;
 
-    /* ==============================
-       APP CARD
-    ============================== */
+            background:
+                radial-gradient(
+                    ellipse at 15% 5%,
+                    rgba(77, 141, 255, 0.13),
+                    transparent 35%
+                ),
+                radial-gradient(
+                    ellipse at 90% 30%,
+                    rgba(149, 101, 255, 0.12),
+                    transparent 35%
+                ),
+                radial-gradient(
+                    ellipse at 50% 90%,
+                    rgba(230, 91, 255, 0.06),
+                    transparent 35%
+                );
+        }
 
-    .app {
-      background: #ffffff;
-      border-radius: 18px;
-      padding: 30px 25px;
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
 
-      box-shadow:
-        0 8px 25px rgba(0, 0, 0, 0.08);
+        button,
+        a {
+            -webkit-tap-highlight-color: transparent;
+        }
 
-      text-align: center;
+        button {
+            font: inherit;
+        }
 
-      transition:
-        transform 0.3s ease,
-        box-shadow 0.3s ease;
-    }
+        img {
+            display: block;
+            max-width: 100%;
+        }
 
-    .app:hover {
-      transform: translateY(-7px);
+        .container {
+            width: min(
+                var(--container),
+                calc(100% - 48px)
+            );
 
-      box-shadow:
-        0 15px 35px rgba(0, 0, 0, 0.13);
-    }
+            margin-inline: auto;
+        }
 
-    /* App Icon */
+        .gradient-text {
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
 
-    .app-icon {
-      font-size: 48px;
-      margin-bottom: 12px;
-    }
+        .section {
+            padding: 105px 0;
+        }
 
-    /* App Title */
+        .section-heading {
+            max-width: 720px;
+            margin: 0 auto 52px;
+            text-align: center;
+        }
 
-    .app h2 {
-      color: #0070f3;
-      font-size: 25px;
-      margin-bottom: 12px;
-    }
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
 
-    /* App Description */
+            padding: 7px 13px;
+            margin-bottom: 20px;
 
-    .app p {
-      font-size: 16px;
-      color: #555;
-      margin-bottom: 20px;
-      min-height: 52px;
-    }
+            color: #c9b5ff;
+            background: rgba(149, 101, 255, 0.10);
 
-    /* Google Play Badge */
+            border: 1px solid rgba(149, 101, 255, 0.24);
+            border-radius: 100px;
 
-    .badge img {
-      width: 200px;
-      max-width: 100%;
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+        }
 
-      transition:
-        transform 0.2s ease;
-    }
+        .eyebrow-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: var(--purple);
+            box-shadow: 0 0 12px var(--purple);
+        }
 
-    .badge img:hover {
-      transform: scale(1.05);
-    }
+        .section-heading h2 {
+            font-size: clamp(32px, 4vw, 48px);
+            line-height: 1.2;
+            letter-spacing: -1.5px;
+            margin-bottom: 18px;
+        }
 
-    /* ==============================
-       FOOTER
-    ============================== */
+        .section-heading p {
+            color: var(--muted);
+            font-size: 16px;
+        }
 
-    footer {
-      text-align: center;
+        /* ========================================
+           NAVIGATION
+        ======================================== */
 
-      padding: 25px 20px;
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 100;
 
-      background: #f1f1f1;
+            background: rgba(8, 11, 24, 0.78);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
 
-      margin-top: 50px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+        }
 
-      font-size: 14px;
+        .nav-inner {
+            min-height: 78px;
 
-      color: #555;
-    }
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
 
-    /* ==============================
-       MOBILE RESPONSIVE
-    ============================== */
+            gap: 25px;
+        }
 
-    @media (max-width: 600px) {
+        .brand {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
 
-      header {
-        padding: 50px 20px;
-      }
+            font-size: 19px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+        }
 
-      header h1 {
-        font-size: 32px;
-      }
+        .brand-mark {
+            width: 43px;
+            height: 43px;
 
-      header p {
-        font-size: 16px;
-      }
+            display: grid;
+            place-items: center;
 
-      .content {
-        margin: 25px auto;
-        padding: 15px;
-        gap: 20px;
-      }
+            border-radius: 14px;
+            background: var(--gradient);
 
-      .app {
-        padding: 25px 20px;
-      }
+            box-shadow: 0 5px 24px rgba(121, 91, 255, 0.27);
 
-      .app h2 {
-        font-size: 22px;
-      }
+            font-size: 20px;
+            font-weight: 900;
+            color: white;
+        }
 
-      .app p {
-        font-size: 15px;
-      }
+        .brand small {
+            display: block;
+            margin-top: -4px;
 
-      .app-icon {
-        font-size: 42px;
-      }
-    }
-  </style>
+            font-size: 10px;
+            font-weight: 500;
+            letter-spacing: 2px;
+
+            color: var(--muted);
+            text-transform: uppercase;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+        }
+
+        .nav-links > a:not(.button) {
+            color: var(--muted);
+            font-size: 14px;
+            font-weight: 600;
+            transition: color 0.2s ease;
+        }
+
+        .nav-links > a:not(.button):hover {
+            color: white;
+        }
+
+        .menu-toggle {
+            display: none;
+
+            width: 44px;
+            height: 44px;
+
+            border: 1px solid var(--border);
+            border-radius: 12px;
+
+            background: var(--surface);
+            color: white;
+
+            cursor: pointer;
+        }
+
+        /* ========================================
+           BUTTONS
+        ======================================== */
+
+        .button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+
+            min-height: 49px;
+            padding: 13px 21px;
+
+            border: 1px solid transparent;
+            border-radius: 13px;
+
+            font-size: 14px;
+            font-weight: 750;
+
+            transition:
+                transform 0.25s ease,
+                box-shadow 0.25s ease,
+                background 0.25s ease;
+        }
+
+        .button:hover {
+            transform: translateY(-3px);
+        }
+
+        .button-primary {
+            color: white;
+            background: var(--gradient);
+
+            box-shadow: 0 8px 28px rgba(117, 91, 255, 0.22);
+        }
+
+        .button-primary:hover {
+            box-shadow: 0 12px 35px rgba(117, 91, 255, 0.38);
+        }
+
+        .button-secondary {
+            background: rgba(255, 255, 255, 0.04);
+            border-color: var(--border);
+            color: white;
+        }
+
+        .button-secondary:hover {
+            background: rgba(255, 255, 255, 0.09);
+        }
+
+        .button-small {
+            min-height: 42px;
+            padding: 10px 16px;
+            font-size: 13px;
+        }
+
+        /* ========================================
+           HERO
+        ======================================== */
+
+        .hero {
+            position: relative;
+            padding: 100px 0 95px;
+            overflow: hidden;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1.08fr 0.92fr;
+            align-items: center;
+            gap: 65px;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            max-width: 700px;
+
+            font-size: clamp(43px, 6vw, 72px);
+            line-height: 1.08;
+
+            letter-spacing: -3.5px;
+            margin-bottom: 25px;
+        }
+
+        .hero-description {
+            max-width: 570px;
+            margin-bottom: 32px;
+
+            color: var(--muted);
+            font-size: 18px;
+        }
+
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+        }
+
+        .hero-note {
+            display: flex;
+            align-items: center;
+            gap: 11px;
+
+            margin-top: 29px;
+            color: var(--muted);
+            font-size: 13px;
+        }
+
+        .hero-note-icon {
+            width: 29px;
+            height: 29px;
+
+            display: grid;
+            place-items: center;
+
+            border-radius: 9px;
+            background: rgba(99, 230, 190, 0.10);
+            color: var(--green);
+        }
+
+        /* Hero visual */
+
+        .hero-visual {
+            min-height: 440px;
+            position: relative;
+
+            display: grid;
+            place-items: center;
+        }
+
+        .orb {
+            position: absolute;
+
+            width: 340px;
+            height: 340px;
+
+            border-radius: 50%;
+
+            background: linear-gradient(
+                135deg,
+                rgba(77, 141, 255, 0.24),
+                rgba(149, 101, 255, 0.19),
+                rgba(230, 91, 255, 0.13)
+            );
+
+            filter: blur(3px);
+            animation: orb-float 8s ease-in-out infinite;
+        }
+
+        .orb::before {
+            content: "";
+            position: absolute;
+            inset: 20px;
+
+            border: 1px solid rgba(255, 255, 255, 0.11);
+            border-radius: 50%;
+        }
+
+        .hero-panel {
+            position: relative;
+            z-index: 2;
+
+            width: min(100%, 380px);
+            padding: 29px;
+
+            border: 1px solid rgba(255, 255, 255, 0.14);
+            border-radius: 27px;
+
+            background: rgba(16, 21, 43, 0.80);
+
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+
+            box-shadow:
+                0 35px 100px rgba(0, 0, 0, 0.40),
+                0 0 60px rgba(117, 91, 255, 0.08);
+
+            animation: panel-float 6s ease-in-out infinite;
+        }
+
+        .panel-top {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+
+            padding-bottom: 23px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .orby-mark {
+            width: 60px;
+            height: 60px;
+
+            display: grid;
+            place-items: center;
+
+            border-radius: 19px;
+
+            background: linear-gradient(
+                135deg,
+                #5638e8,
+                #a43df1 55%,
+                #347eff
+            );
+
+            box-shadow: 0 9px 30px rgba(126, 76, 255, 0.3);
+
+            font-size: 29px;
+        }
+
+        .panel-top h3 {
+            font-size: 21px;
+            letter-spacing: -0.5px;
+        }
+
+        .panel-top p {
+            color: var(--muted);
+            font-size: 12px;
+        }
+
+        .panel-label {
+            margin: 23px 0 13px;
+
+            color: #9da9c7;
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 1.6px;
+            text-transform: uppercase;
+        }
+
+        .feature-row {
+            display: flex;
+            align-items: center;
+            gap: 13px;
+
+            margin-top: 10px;
+            padding: 13px;
+
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 15px;
+
+            background: rgba(255, 255, 255, 0.035);
+        }
+
+        .feature-icon {
+            width: 40px;
+            height: 40px;
+            flex-shrink: 0;
+
+            display: grid;
+            place-items: center;
+
+            border-radius: 12px;
+            background: rgba(149, 101, 255, 0.14);
+
+            font-size: 19px;
+        }
+
+        .feature-row h4 {
+            font-size: 13px;
+            font-weight: 750;
+        }
+
+        .feature-row p {
+            color: var(--muted);
+            font-size: 11px;
+        }
+
+        .floating-chip {
+            position: absolute;
+            z-index: 3;
+
+            display: flex;
+            align-items: center;
+            gap: 9px;
+
+            padding: 12px 15px;
+
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 14px;
+
+            background: rgba(18, 24, 47, 0.92);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
+
+            font-size: 12px;
+            font-weight: 750;
+        }
+
+        .floating-chip-one {
+            top: 55px;
+            right: -5px;
+            animation: chip-float 5s ease-in-out infinite;
+        }
+
+        .floating-chip-two {
+            left: -15px;
+            bottom: 55px;
+            animation: chip-float 6s ease-in-out infinite reverse;
+        }
+
+        .chip-symbol {
+            font-size: 19px;
+        }
+
+        /* ========================================
+           TRUST / BENEFITS STRIP
+        ======================================== */
+
+        .benefit-strip {
+            padding: 25px 0;
+            border-block: 1px solid rgba(255, 255, 255, 0.07);
+
+            background: rgba(255, 255, 255, 0.018);
+        }
+
+        .benefit-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .benefit {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+
+            color: #d4daed;
+            font-size: 14px;
+            font-weight: 650;
+        }
+
+        .benefit span {
+            color: #b69aff;
+            font-size: 20px;
+        }
+
+        /* ========================================
+           FEATURED ORBYNIQ
+        ======================================== */
+
+        .featured-card {
+            position: relative;
+            overflow: hidden;
+
+            display: grid;
+            grid-template-columns: 1fr 0.8fr;
+            align-items: center;
+            gap: 55px;
+
+            padding: 58px;
+
+            border: 1px solid rgba(149, 101, 255, 0.25);
+            border-radius: 30px;
+
+            background:
+                radial-gradient(
+                    ellipse at 90% 20%,
+                    rgba(149, 101, 255, 0.17),
+                    transparent 40%
+                ),
+                linear-gradient(
+                    135deg,
+                    rgba(18, 25, 51, 0.96),
+                    rgba(12, 15, 34, 0.96)
+                );
+
+            box-shadow: 0 30px 90px rgba(0, 0, 0, 0.16);
+        }
+
+        .featured-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .featured-brand {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .featured-icon {
+            width: 76px;
+            height: 76px;
+
+            display: grid;
+            place-items: center;
+
+            border-radius: 23px;
+
+            background: linear-gradient(
+                135deg,
+                #5638e8,
+                #a43df1 55%,
+                #347eff
+            );
+
+            box-shadow: 0 12px 35px rgba(126, 76, 255, 0.27);
+
+            font-size: 36px;
+        }
+
+        .featured-brand h3 {
+            font-size: 30px;
+            letter-spacing: -1px;
+        }
+
+        .featured-brand p {
+            color: #b5a2ff;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .featured-content h2 {
+            font-size: clamp(30px, 4vw, 43px);
+            line-height: 1.2;
+            letter-spacing: -1.5px;
+
+            margin-bottom: 20px;
+        }
+
+        .featured-content > p {
+            max-width: 520px;
+            color: var(--muted);
+            margin-bottom: 25px;
+        }
+
+        .feature-list {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 13px;
+
+            margin-bottom: 30px;
+            list-style: none;
+        }
+
+        .feature-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 9px;
+
+            color: #d9def0;
+            font-size: 13px;
+        }
+
+        .check {
+            color: var(--green);
+            font-weight: 900;
+        }
+
+        .featured-visual {
+            position: relative;
+            min-height: 330px;
+
+            display: grid;
+            place-items: center;
+        }
+
+        .visual-ring {
+            position: absolute;
+
+            width: 285px;
+            height: 285px;
+
+            border: 1px solid rgba(149, 101, 255, 0.26);
+            border-radius: 50%;
+
+            box-shadow:
+                0 0 0 30px rgba(149, 101, 255, 0.035),
+                0 0 0 60px rgba(149, 101, 255, 0.025);
+        }
+
+        .visual-orby {
+            position: relative;
+            z-index: 2;
+
+            width: 190px;
+            height: 220px;
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+
+            border: 1px solid rgba(255, 255, 255, 0.17);
+            border-radius: 28px;
+
+            background: linear-gradient(
+                145deg,
+                rgba(123, 79, 255, 0.23),
+                rgba(45, 93, 190, 0.12)
+            );
+
+            backdrop-filter: blur(20px);
+
+            box-shadow: 0 30px 70px rgba(0, 0, 0, 0.25);
+
+            transform: rotate(-5deg);
+        }
+
+        .visual-orby .big-bell {
+            width: 94px;
+            height: 94px;
+
+            display: grid;
+            place-items: center;
+
+            border-radius: 28px;
+
+            background: linear-gradient(
+                135deg,
+                #5638e8,
+                #a43df1 55%,
+                #347eff
+            );
+
+            font-size: 48px;
+            box-shadow: 0 12px 35px rgba(126, 76, 255, 0.3);
+        }
+
+        .visual-orby strong {
+            font-size: 19px;
+            letter-spacing: 1px;
+        }
+
+        .visual-orby small {
+            color: var(--muted);
+            font-size: 10px;
+            letter-spacing: 2px;
+        }
+
+        /* ========================================
+           ALL APPS
+        ======================================== */
+
+        .apps-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 23px;
+        }
+
+        .app-card {
+            position: relative;
+            overflow: hidden;
+
+            display: flex;
+            flex-direction: column;
+
+            min-height: 340px;
+            padding: 28px;
+
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+
+            background: var(--surface);
+
+            transition:
+                transform 0.3s ease,
+                border-color 0.3s ease,
+                background 0.3s ease,
+                box-shadow 0.3s ease;
+        }
+
+        .app-card::before {
+            content: "";
+            position: absolute;
+
+            width: 170px;
+            height: 170px;
+
+            top: -100px;
+            right: -90px;
+
+            border-radius: 50%;
+            background: var(--card-glow, rgba(149, 101, 255, 0.16));
+            filter: blur(15px);
+
+            transition: transform 0.4s ease;
+        }
+
+        .app-card:hover {
+            transform: translateY(-8px);
+
+            border-color: rgba(149, 101, 255, 0.40);
+            background: var(--surface-hover);
+
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.20);
+        }
+
+        .app-card:hover::before {
+            transform: scale(1.5);
+        }
+
+        .app-card-top {
+            position: relative;
+            z-index: 1;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+
+            margin-bottom: 24px;
+        }
+
+        .app-icon {
+            width: 68px;
+            height: 68px;
+            flex-shrink: 0;
+
+            display: grid;
+            place-items: center;
+
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 21px;
+
+            background: var(--app-gradient);
+
+            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.20);
+
+            font-size: 32px;
+        }
+
+        .app-type {
+            padding: 6px 10px;
+
+            border: 1px solid var(--border);
+            border-radius: 100px;
+
+            color: #b6bfd9;
+            font-size: 10px;
+            font-weight: 750;
+            letter-spacing: 0.8px;
+            text-transform: uppercase;
+        }
+
+        .app-card h3 {
+            position: relative;
+            z-index: 1;
+
+            margin-bottom: 12px;
+
+            font-size: 23px;
+            letter-spacing: -0.7px;
+        }
+
+        .app-card > p {
+            position: relative;
+            z-index: 1;
+
+            flex: 1;
+            margin-bottom: 24px;
+
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        .app-card .button {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+        }
+
+        /* ========================================
+           WHY RAI TECH LABS
+        ======================================== */
+
+        .why-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 22px;
+        }
+
+        .why-card {
+            padding: 30px;
+
+            border: 1px solid var(--border);
+            border-radius: 21px;
+
+            background: rgba(255, 255, 255, 0.025);
+        }
+
+        .why-icon {
+            width: 52px;
+            height: 52px;
+
+            display: grid;
+            place-items: center;
+
+            margin-bottom: 22px;
+
+            border-radius: 16px;
+
+            background: rgba(149, 101, 255, 0.12);
+            border: 1px solid rgba(149, 101, 255, 0.18);
+
+            font-size: 24px;
+        }
+
+        .why-card h3 {
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+
+        .why-card p {
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        /* ========================================
+           CALL TO ACTION
+        ======================================== */
+
+        .cta-section {
+            padding: 20px 0 110px;
+        }
+
+        .cta-box {
+            position: relative;
+            overflow: hidden;
+
+            padding: 68px 35px;
+
+            text-align: center;
+
+            border: 1px solid rgba(149, 101, 255, 0.28);
+            border-radius: 30px;
+
+            background:
+                radial-gradient(
+                    ellipse at 50% 120%,
+                    rgba(149, 101, 255, 0.28),
+                    transparent 55%
+                ),
+                linear-gradient(
+                    135deg,
+                    rgba(24, 31, 61, 0.95),
+                    rgba(13, 16, 37, 0.98)
+                );
+        }
+
+        .cta-box h2 {
+            max-width: 700px;
+            margin: 0 auto 18px;
+
+            font-size: clamp(31px, 4vw, 47px);
+            line-height: 1.2;
+            letter-spacing: -1.5px;
+        }
+
+        .cta-box p {
+            max-width: 580px;
+            margin: 0 auto 27px;
+            color: var(--muted);
+        }
+
+        /* ========================================
+           FOOTER
+        ======================================== */
+
+        footer {
+            border-top: 1px solid rgba(255, 255, 255, 0.07);
+            background: rgba(5, 7, 16, 0.60);
+        }
+
+        .footer-main {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 30px;
+
+            padding: 35px 0;
+        }
+
+        .footer-brand p {
+            margin-top: 8px;
+            color: var(--muted);
+            font-size: 13px;
+        }
+
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 23px;
+        }
+
+        .footer-links a {
+            color: var(--muted);
+            font-size: 13px;
+            transition: color 0.2s ease;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            padding: 18px 0;
+
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+
+            color: #7f89a5;
+            text-align: center;
+            font-size: 12px;
+        }
+
+        /* ========================================
+           ANIMATIONS
+        ======================================== */
+
+        @keyframes panel-float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-9px);
+            }
+        }
+
+        @keyframes chip-float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        @keyframes orb-float {
+            0%, 100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.06);
+            }
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(22px);
+
+            transition:
+                opacity 0.7s ease,
+                transform 0.7s ease;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ========================================
+           RESPONSIVE DESIGN
+        ======================================== */
+
+        @media (max-width: 1000px) {
+            .hero-grid {
+                gap: 30px;
+            }
+
+            .hero h1 {
+                letter-spacing: -2.5px;
+            }
+
+            .featured-card {
+                padding: 38px;
+                gap: 25px;
+            }
+
+            .apps-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .app-card:last-child {
+                grid-column: 1 / -1;
+            }
+
+            .why-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .why-card:last-child {
+                grid-column: 1 / -1;
+            }
+        }
+
+        @media (max-width: 760px) {
+            .container {
+                width: min(
+                    100% - 36px,
+                    var(--container)
+                );
+            }
+
+            .section {
+                padding: 75px 0;
+            }
+
+            .nav-inner {
+                min-height: 70px;
+            }
+
+            .menu-toggle {
+                display: grid;
+                place-items: center;
+                font-size: 23px;
+            }
+
+            .nav-links {
+                display: none;
+
+                position: absolute;
+                top: 70px;
+                left: 0;
+                right: 0;
+
+                padding: 20px 24px 25px;
+
+                flex-direction: column;
+                align-items: stretch;
+                gap: 17px;
+
+                border-bottom: 1px solid var(--border);
+                background: rgba(8, 11, 24, 0.97);
+
+                backdrop-filter: blur(20px);
+            }
+
+            .nav-links.open {
+                display: flex;
+            }
+
+            .nav-links .button {
+                width: 100%;
+            }
+
+            .hero {
+                padding: 72px 0 65px;
+            }
+
+            .hero-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .hero-content {
+                text-align: center;
+            }
+
+            .hero h1 {
+                font-size: clamp(43px, 10vw, 62px);
+                letter-spacing: -2.5px;
+            }
+
+            .hero-description {
+                margin-inline: auto;
+                font-size: 16px;
+            }
+
+            .hero-actions {
+                justify-content: center;
+            }
+
+            .hero-note {
+                justify-content: center;
+            }
+
+            .hero-visual {
+                min-height: 410px;
+            }
+
+            .orb {
+                width: 285px;
+                height: 285px;
+            }
+
+            .hero-panel {
+                width: min(100%, 350px);
+            }
+
+            .floating-chip-one {
+                right: 0;
+                top: 35px;
+            }
+
+            .floating-chip-two {
+                left: 0;
+                bottom: 30px;
+            }
+
+            .benefit-grid {
+                grid-template-columns: 1fr;
+                gap: 17px;
+            }
+
+            .benefit {
+                justify-content: flex-start;
+                max-width: 300px;
+                margin-inline: auto;
+                width: 100%;
+            }
+
+            .section-heading {
+                margin-bottom: 35px;
+            }
+
+            .featured-card {
+                grid-template-columns: 1fr;
+                padding: 29px 23px;
+            }
+
+            .featured-content h2 {
+                font-size: 34px;
+            }
+
+            .featured-visual {
+                min-height: 290px;
+            }
+
+            .visual-ring {
+                width: 230px;
+                height: 230px;
+            }
+
+            .feature-list {
+                grid-template-columns: 1fr;
+            }
+
+            .apps-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .app-card:last-child {
+                grid-column: auto;
+            }
+
+            .app-card {
+                min-height: 300px;
+            }
+
+            .why-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .why-card:last-child {
+                grid-column: auto;
+            }
+
+            .cta-section {
+                padding-bottom: 75px;
+            }
+
+            .cta-box {
+                padding: 48px 23px;
+            }
+
+            .footer-main {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .brand {
+                font-size: 16px;
+            }
+
+            .brand-mark {
+                width: 39px;
+                height: 39px;
+            }
+
+            .hero h1 {
+                font-size: 40px;
+            }
+
+            .hero-actions .button {
+                width: 100%;
+            }
+
+            .hero-visual {
+                min-height: 390px;
+            }
+
+            .hero-panel {
+                padding: 20px;
+            }
+
+            .floating-chip {
+                padding: 9px 11px;
+                font-size: 10px;
+            }
+
+            .featured-brand h3 {
+                font-size: 25px;
+            }
+
+            .featured-icon {
+                width: 64px;
+                height: 64px;
+            }
+
+            .footer-links {
+                gap: 15px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                scroll-behavior: auto !important;
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+
+            .reveal {
+                opacity: 1;
+                transform: none;
+            }
+        }
+    </style>
 </head>
 
 <body>
 
-  <!-- ==============================
-       HEADER
-  ============================== -->
+    <!-- ========================================
+         NAVIGATION
+    ======================================== -->
 
-  <header>
-    <h1>📱 Rai Tech Labs</h1>
+    <nav class="navbar" aria-label="Main navigation">
+        <div class="container nav-inner">
 
-    <p>
-      Smart, simple, and useful apps
-      designed to make everyday life easier.
-    </p>
-  </header>
+            <a class="brand" href="#home" aria-label="Rai Tech Labs home">
+                <span class="brand-mark" aria-hidden="true">R</span>
 
+                <span>
+                    Rai Tech Labs
+                    <small>Technology & Innovation</small>
+                </span>
+            </a>
 
-  <!-- ==============================
-       APPS
-  ============================== -->
+            <button
+                class="menu-toggle"
+                id="menuToggle"
+                aria-label="Open navigation menu"
+                aria-expanded="false"
+                aria-controls="navLinks"
+                type="button"
+            >
+                ☰
+            </button>
 
-  <main class="content">
+            <div class="nav-links" id="navLinks">
+                <a href="#home">Home</a>
+                <a href="#featured">Featured App</a>
+                <a href="#apps">Our Apps</a>
+                <a href="#about">About Us</a>
 
-    <!-- ==============================
-         APP 1 — MATH LEARNING
-    ============================== -->
+                <a
+                    class="button button-primary button-small"
+                    href="https://play.google.com/store/apps/details?id=com.manager.notifyvault"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    Explore ORBYNIQ ↗
+                </a>
+            </div>
 
-    <div class="app">
-
-      <div class="app-icon">
-        📘
-      </div>
-
-      <h2>
-        Math Learning
-      </h2>
-
-      <p>
-        A fun and interactive way to
-        practice mathematics for students.
-      </p>
-
-      <div class="badge">
-
-        <a
-          href="https://play.google.com/store/apps/details?id=com.education.brainymath"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-
-          <img
-            src="https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png"
-            alt="Get Math Learning on Google Play"
-          >
-
-        </a>
-
-      </div>
-
-    </div>
+        </div>
+    </nav>
 
 
-    <!-- ==============================
-         APP 2 — ENGLISH LEARNING
-    ============================== -->
+    <!-- ========================================
+         HERO SECTION
+    ======================================== -->
 
-    <div class="app">
+    <main>
 
-      <div class="app-icon">
-        📖
-      </div>
+        <section class="hero" id="home">
+            <div class="container hero-grid">
 
-      <h2>
-        English Learning
-      </h2>
+                <div class="hero-content">
 
-      <p>
-        Improve vocabulary, grammar,
-        and communication with easy exercises.
-      </p>
+                    <div class="eyebrow">
+                        <span class="eyebrow-dot"></span>
+                        BUILT FOR EVERYDAY LIFE
+                    </div>
 
-      <div class="badge">
+                    <h1>
+                        Technology that
+                        <span class="gradient-text">
+                            makes life simpler.
+                        </span>
+                    </h1>
 
-        <a
-          href="https://play.google.com/store/apps/details?id=com.kids.education.wordgalaxy"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
+                    <p class="hero-description">
+                        Discover thoughtfully designed Android apps
+                        that help you stay organized, learn something
+                        new, and get more from your digital life.
+                    </p>
 
-          <img
-            src="https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png"
-            alt="Get English Learning on Google Play"
-          >
+                    <div class="hero-actions">
 
-        </a>
+                        <a href="#apps" class="button button-primary">
+                            Explore Our Apps <span aria-hidden="true">→</span>
+                        </a>
 
-      </div>
+                        <a href="#about" class="button button-secondary">
+                            About Rai Tech Labs
+                        </a>
 
-    </div>
+                    </div>
 
+                    <div class="hero-note">
+                        <span class="hero-note-icon" aria-hidden="true">✦</span>
+                        <span>Useful apps. Thoughtful experiences.</span>
+                    </div>
 
-    <!-- ==============================
-         APP 3 — ORBYNIQ
-    ============================== -->
-
-    <div class="app">
-
-      <div class="app-icon">
-        🔔
-      </div>
-
-      <h2>
-        ORBYNIQ
-      </h2>
-
-      <p>
-        Keep your important notifications
-        organized and easily accessible.
-      </p>
-
-      <div class="badge">
-
-        <a
-          href="https://play.google.com/store/apps/details?id=com.manager.notifyvault"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-
-          <img
-            src="https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png"
-            alt="Get ORBYNIQ on Google Play"
-          >
-
-        </a>
-
-      </div>
-
-    </div>
-
-  </main>
+                </div>
 
 
-  <!-- ==============================
-       FOOTER
-  ============================== -->
+                <!-- Decorative product preview -->
 
-  <footer>
-    © 2026 Rai Tech Labs. All Rights Reserved.
-  </footer>
+                <div class="hero-visual" aria-label="ORBYNIQ feature preview">
+
+                    <div class="orb" aria-hidden="true"></div>
+
+                    <div class="floating-chip floating-chip-one">
+                        <span class="chip-symbol" aria-hidden="true">✦</span>
+                        <span>Smarter digital organization</span>
+                    </div>
+
+                    <div class="hero-panel">
+
+                        <div class="panel-top">
+
+                            <div class="orby-mark" aria-hidden="true">
+                                🔔
+                            </div>
+
+                            <div>
+                                <h3>ORBYNIQ</h3>
+                                <p>Your Digital Life, Organized.</p>
+                            </div>
+
+                        </div>
+
+                        <p class="panel-label">Explore the experience</p>
+
+                        <div class="feature-row">
+                            <div class="feature-icon" aria-hidden="true">🔔</div>
+                            <div>
+                                <h4>Notification History</h4>
+                                <p>Find notifications saved by the app.</p>
+                            </div>
+                        </div>
+
+                        <div class="feature-row">
+                            <div class="feature-icon" aria-hidden="true">🔐</div>
+                            <div>
+                                <h4>Smart OTP Manager</h4>
+                                <p>Keep supported OTP messages organized.</p>
+                            </div>
+                        </div>
+
+                        <div class="feature-row">
+                            <div class="feature-icon" aria-hidden="true">📊</div>
+                            <div>
+                                <h4>Financial Insights</h4>
+                                <p>Explore available spending insights.</p>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="floating-chip floating-chip-two">
+                        <span class="chip-symbol" aria-hidden="true">⚡</span>
+                        <span>Made for everyday productivity</span>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- ========================================
+             BENEFITS STRIP
+        ======================================== -->
+
+        <section class="benefit-strip" aria-label="Our approach">
+            <div class="container benefit-grid">
+
+                <div class="benefit">
+                    <span aria-hidden="true">✧</span>
+                    Useful everyday tools
+                </div>
+
+                <div class="benefit">
+                    <span aria-hidden="true">◈</span>
+                    Thoughtful app experiences
+                </div>
+
+                <div class="benefit">
+                    <span aria-hidden="true">↗</span>
+                    Designed for Android
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- ========================================
+             FEATURED ORBYNIQ
+        ======================================== -->
+
+        <section class="section" id="featured">
+            <div class="container">
+
+                <div class="featured-card reveal">
+
+                    <div class="featured-content">
+
+                        <div class="featured-brand">
+
+                            <div class="featured-icon" aria-hidden="true">
+                                🔔
+                            </div>
+
+                            <div>
+                                <h3>ORBYNIQ</h3>
+                                <p>Featured App</p>
+                            </div>
+
+                        </div>
+
+                        <h2>
+                            Your digital life,
+                            <span class="gradient-text">
+                                organized.
+                            </span>
+                        </h2>
+
+                        <p>
+                            Bring useful notification tools, OTP organization,
+                            and financial insights together in one Android app.
+                            Discover features designed to make everyday digital
+                            tasks easier to manage.
+                        </p>
+
+                        <ul class="feature-list">
+                            <li>
+                                <span class="check">✓</span>
+                                Notification history
+                            </li>
+
+                            <li>
+                                <span class="check">✓</span>
+                                Smart OTP management
+                            </li>
+
+                            <li>
+                                <span class="check">✓</span>
+                                Financial insights
+                            </li>
+
+                            <li>
+                                <span class="check">✓</span>
+                                Search and organization tools
+                            </li>
+                        </ul>
+
+                        <a
+                            class="button button-primary"
+                            href="https://play.google.com/store/apps/details?id=com.manager.notifyvault"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            Get ORBYNIQ on Google Play ↗
+                        </a>
+
+                    </div>
+
+
+                    <div class="featured-visual" aria-hidden="true">
+
+                        <div class="visual-ring"></div>
+
+                        <div class="visual-orby">
+
+                            <div class="big-bell">
+                                🔔
+                            </div>
+
+                            <strong>ORBYNIQ</strong>
+                            <small>STAY ORGANIZED</small>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- ========================================
+             OUR APPS
+        ======================================== -->
+
+        <section class="section" id="apps">
+
+            <div class="container">
+
+                <div class="section-heading reveal">
+
+                    <div class="eyebrow">
+                        <span class="eyebrow-dot"></span>
+                        OUR APP COLLECTION
+                    </div>
+
+                    <h2>
+                        Discover apps built
+                        <span class="gradient-text">for you.</span>
+                    </h2>
+
+                    <p>
+                        Explore our collection of Android apps designed
+                        for learning, organization, and everyday utility.
+                    </p>
+
+                </div>
+
+
+                <div class="apps-grid">
+
+                    <!-- ORBYNIQ -->
+
+                    <article
+                        class="app-card reveal"
+                        style="
+                            --app-gradient: linear-gradient(135deg, #5638e8, #a43df1 55%, #347eff);
+                            --card-glow: rgba(149, 101, 255, 0.19);
+                        "
+                    >
+
+                        <div class="app-card-top">
+
+                            <div class="app-icon" aria-hidden="true">
+                                🔔
+                            </div>
+
+                            <span class="app-type">Productivity</span>
+
+                        </div>
+
+                        <h3>ORBYNIQ</h3>
+
+                        <p>
+                            Organize notification history, manage OTPs,
+                            and explore financial insights with a collection
+                            of useful digital tools.
+                        </p>
+
+                        <a
+                            class="button button-primary"
+                            href="https://play.google.com/store/apps/details?id=com.manager.notifyvault"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            aria-label="Get ORBYNIQ on Google Play"
+                        >
+                            Explore ORBYNIQ ↗
+                        </a>
+
+                    </article>
+
+
+                    <!-- MATH LEARNING -->
+
+                    <article
+                        class="app-card reveal"
+                        style="
+                            --app-gradient: linear-gradient(135deg, #1677ff, #42c5ff);
+                            --card-glow: rgba(22, 119, 255, 0.18);
+                        "
+                    >
+
+                        <div class="app-card-top">
+
+                            <div class="app-icon" aria-hidden="true">
+                                📘
+                            </div>
+
+                            <span class="app-type">Education</span>
+
+                        </div>
+
+                        <h3>Math Learning</h3>
+
+                        <p>
+                            Practice mathematics with an approachable
+                            learning experience designed to help students
+                            build their skills.
+                        </p>
+
+                        <a
+                            class="button button-secondary"
+                            href="https://play.google.com/store/apps/details?id=com.education.brainymath"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            aria-label="Get Math Learning on Google Play"
+                        >
+                            Explore App ↗
+                        </a>
+
+                    </article>
+
+
+                    <!-- ENGLISH LEARNING -->
+
+                    <article
+                        class="app-card reveal"
+                        style="
+                            --app-gradient: linear-gradient(135deg, #0eaf91, #58dfb1);
+                            --card-glow: rgba(14, 175, 145, 0.15);
+                        "
+                    >
+
+                        <div class="app-card-top">
+
+                            <div class="app-icon" aria-hidden="true">
+                                📖
+                            </div>
+
+                            <span class="app-type">Education</span>
+
+                        </div>
+
+                        <h3>English Learning</h3>
+
+                        <p>
+                            Explore vocabulary, grammar, and communication
+                            exercises designed to support English learning.
+                        </p>
+
+                        <a
+                            class="button button-secondary"
+                            href="https://play.google.com/store/apps/details?id=com.kids.education.wordgalaxy"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            aria-label="Get English Learning on Google Play"
+                        >
+                            Explore App ↗
+                        </a>
+
+                    </article>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ========================================
+             ABOUT RAI TECH LABS
+        ======================================== -->
+
+        <section class="section" id="about">
+
+            <div class="container">
+
+                <div class="section-heading reveal">
+
+                    <div class="eyebrow">
+                        <span class="eyebrow-dot"></span>
+                        ABOUT RAI TECH LABS
+                    </div>
+
+                    <h2>
+                        Useful technology,
+                        <span class="gradient-text">
+                            thoughtfully made.
+                        </span>
+                    </h2>
+
+                    <p>
+                        Our goal is to build practical digital experiences
+                        that help people learn, stay organized, and simplify
+                        everyday tasks.
+                    </p>
+
+                </div>
+
+
+                <div class="why-grid">
+
+                    <article class="why-card reveal">
+
+                        <div class="why-icon" aria-hidden="true">
+                            ◈
+                        </div>
+
+                        <h3>Purposeful Design</h3>
+
+                        <p>
+                            We focus on clear interfaces and useful features
+                            that make apps easier to understand and use.
+                        </p>
+
+                    </article>
+
+
+                    <article class="why-card reveal">
+
+                        <div class="why-icon" aria-hidden="true">
+                            ⚡
+                        </div>
+
+                        <h3>Everyday Utility</h3>
+
+                        <p>
+                            Our apps are designed around practical needs,
+                            from learning to organizing your digital life.
+                        </p>
+
+                    </article>
+
+
+                    <article class="why-card reveal">
+
+                        <div class="why-icon" aria-hidden="true">
+                            ✧
+                        </div>
+
+                        <h3>Continuous Improvement</h3>
+
+                        <p>
+                            We aim to improve our apps through thoughtful
+                            development, refinements, and user feedback.
+                        </p>
+
+                    </article>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ========================================
+             FINAL CALL TO ACTION
+        ======================================== -->
+
+        <section class="cta-section">
+
+            <div class="container">
+
+                <div class="cta-box reveal">
+
+                    <div class="eyebrow">
+                        <span class="eyebrow-dot"></span>
+                        START EXPLORING
+                    </div>
+
+                    <h2>
+                        Make more of your
+                        <span class="gradient-text">
+                            digital life.
+                        </span>
+                    </h2>
+
+                    <p>
+                        Discover ORBYNIQ and explore the apps from
+                        Rai Tech Labs on Google Play.
+                    </p>
+
+                    <a
+                        class="button button-primary"
+                        href="https://play.google.com/store/apps/details?id=com.manager.notifyvault"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        Discover ORBYNIQ ↗
+                    </a>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- ========================================
+         FOOTER
+    ======================================== -->
+
+    <footer>
+
+        <div class="container footer-main">
+
+            <div class="footer-brand">
+
+                <a class="brand" href="#home">
+                    <span class="brand-mark" aria-hidden="true">R</span>
+
+                    <span>
+                        Rai Tech Labs
+                        <small>Technology & Innovation</small>
+                    </span>
+                </a>
+
+                <p>
+                    Smart, simple, and useful apps for everyday life.
+                </p>
+
+            </div>
+
+
+            <div class="footer-links">
+
+                <a href="#home">Home</a>
+                <a href="#apps">Our Apps</a>
+                <a href="#about">About Us</a>
+
+                <a
+                    href="https://play.google.com/store/apps/details?id=com.manager.notifyvault"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    Google Play ↗
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <div class="footer-bottom">
+            <div class="container">
+                © <span id="currentYear">2026</span>
+                Rai Tech Labs. All rights reserved.
+            </div>
+        </div>
+
+    </footer>
+
+
+    <!-- ========================================
+         INTERACTIONS
+    ======================================== -->
+
+    <script>
+        // Mobile navigation
+        const menuToggle = document.getElementById("menuToggle");
+        const navLinks = document.getElementById("navLinks");
+
+        menuToggle.addEventListener("click", () => {
+            const isOpen = navLinks.classList.toggle("open");
+
+            menuToggle.setAttribute("aria-expanded", String(isOpen));
+            menuToggle.setAttribute(
+                "aria-label",
+                isOpen ? "Close navigation menu" : "Open navigation menu"
+            );
+
+            menuToggle.textContent = isOpen ? "✕" : "☰";
+        });
+
+        // Close the mobile menu after choosing a section
+        navLinks.querySelectorAll("a").forEach((link) => {
+            link.addEventListener("click", () => {
+                navLinks.classList.remove("open");
+
+                menuToggle.setAttribute("aria-expanded", "false");
+                menuToggle.setAttribute("aria-label", "Open navigation menu");
+                menuToggle.textContent = "☰";
+            });
+        });
+
+        // Reveal sections as the user scrolls
+        const revealElements = document.querySelectorAll(".reveal");
+
+        if ("IntersectionObserver" in window) {
+            const observer = new IntersectionObserver(
+                (entries, currentObserver) => {
+                    entries.forEach((entry) => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add("visible");
+                            currentObserver.unobserve(entry.target);
+                        }
+                    });
+                },
+                {
+                    threshold: 0.12
+                }
+            );
+
+            revealElements.forEach((element) => {
+                observer.observe(element);
+            });
+        } else {
+            revealElements.forEach((element) => {
+                element.classList.add("visible");
+            });
+        }
+
+        // Automatically update the footer year
+        document.getElementById("currentYear").textContent =
+            new Date().getFullYear();
+    </script>
 
 </body>
 </html>
