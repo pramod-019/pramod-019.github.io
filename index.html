@@ -16,108 +16,16 @@
           content="Discover useful Android apps designed to make everyday life simpler.">
     <meta property="og:type" content="website">
 
-    <!-- Google AdSense -->
-<script async
-    src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4125267713715180"
-    crossorigin="anonymous">
-</script>
+    <!-- Google AdSense Library -->
+    <script async
+        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4125267713715180"
+        crossorigin="anonymous">
+    </script>
 
     <style>
         /* ========================================
-           DESIGN SYSTEM
+           DESIGN SYSTEM & CSS VARIABLES
         ======================================== */
-
-        /* ========================================
-   GOOGLE ADSENSE
-======================================== */
-
-.ad-section {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 35px 0;
-}
-
-.ad-container {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: visible;
-}
-
-.ad-label {
-    color: #7f89a5;
-    font-size: 10px;
-    letter-spacing: 1.5px;
-    text-align: center;
-    text-transform: uppercase;
-    margin-bottom: 9px;
-}
-
-.ad-horizontal {
-    width: 728px;
-    max-width: 100%;
-    min-height: 90px;
-}
-
-.ad-square {
-    width: 300px;
-    min-height: 250px;
-}
-
-.ad-vertical {
-    width: 300px;
-    min-height: 600px;
-}
-
-.vertical-ad-section {
-    padding: 45px 0 65px;
-}
-
-// Initialize visible Google AdSense units
-function initializeAds() {
-    document.querySelectorAll(".adsbygoogle").forEach(function (ad) {
-        // Prevent duplicate initialization
-        if (ad.dataset.initialized === "true") {
-            return;
-        }
-
-        // Skip ads inside hidden containers
-        if (ad.getBoundingClientRect().width === 0) {
-            return;
-        }
-
-        try {
-            (window.adsbygoogle = window.adsbygoogle || []).push({});
-            ad.dataset.initialized = "true";
-        } catch (error) {
-            console.error("AdSense initialization error:", error);
-        }
-    });
-}
-
-document.addEventListener("DOMContentLoaded", initializeAds);
-
-// Initialize an ad if its container becomes visible after resizing
-let adResizeTimeout;
-
-window.addEventListener("resize", function () {
-    clearTimeout(adResizeTimeout);
-
-    adResizeTimeout = setTimeout(initializeAds, 300);
-});
-
-    .square-ad-section {
-        padding: 25px 0;
-    }
-
-    .vertical-ad-section {
-        padding: 25px 0 45px;
-    }
-}
-
         :root {
             --bg: #080b18;
             --bg-secondary: #0d1225;
@@ -144,6 +52,82 @@ window.addEventListener("resize", function () {
             --radius: 24px;
         }
 
+        /* ========================================
+           GOOGLE ADSENSE STYLES
+        ======================================== */
+        .ad-section {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 35px 0;
+            overflow: hidden;
+        }
+
+        .horizontal-ad-section {
+            padding: 25px 0;
+        }
+
+        .square-ad-section {
+            padding: 25px 0;
+        }
+
+        .vertical-ad-section {
+            padding: 35px 0 55px;
+        }
+
+        .ad-container {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .ad-label {
+            color: #7f89a5;
+            font-size: 10px;
+            letter-spacing: 1.5px;
+            text-align: center;
+            text-transform: uppercase;
+            margin-bottom: 9px;
+        }
+
+        .ad-horizontal {
+            display: inline-block;
+            width: 728px;
+            max-width: 100%;
+            height: 90px;
+        }
+
+        .ad-square {
+            display: inline-block;
+            width: 300px;
+            max-width: 100%;
+            height: 250px;
+        }
+
+        .ad-vertical {
+            display: inline-block;
+            width: 300px;
+            max-width: 100%;
+            height: 600px;
+        }
+
+        /* Responsive Ad Adjustments */
+        @media (max-width: 768px) {
+            .ad-horizontal {
+                width: 320px;
+                height: 50px;
+            }
+            .vertical-ad-section {
+                padding: 20px 0 35px;
+            }
+        }
+
+        /* ========================================
+           RESET & BASE STYLES
+        ======================================== */
         * {
             margin: 0;
             padding: 0;
@@ -157,12 +141,12 @@ window.addEventListener("resize", function () {
 
         body {
             font-family: Inter, -apple-system, BlinkMacSystemFont,
-                         "Segoe UI", Arial, sans-serif;
-
+                         "Segoe UI", Roboto, Arial, sans-serif;
             background: var(--bg);
             color: var(--text);
             line-height: 1.7;
             overflow-x: hidden;
+            width: 100%;
         }
 
         body::before {
@@ -171,7 +155,6 @@ window.addEventListener("resize", function () {
             inset: 0;
             z-index: -2;
             pointer-events: none;
-
             background:
                 radial-gradient(
                     ellipse at 15% 5%,
@@ -202,6 +185,8 @@ window.addEventListener("resize", function () {
 
         button {
             font: inherit;
+            border: none;
+            background: none;
         }
 
         img {
@@ -214,15 +199,16 @@ window.addEventListener("resize", function () {
                 var(--container),
                 calc(100% - 48px)
             );
-
             margin-inline: auto;
         }
 
         .gradient-text {
             background: var(--gradient);
             -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
             background-clip: text;
-            color: transparent;
+            color: #9565ff; /* Fallback for unsupported browsers */
+            display: inline-block;
         }
 
         .section {
@@ -239,16 +225,12 @@ window.addEventListener("resize", function () {
             display: inline-flex;
             align-items: center;
             gap: 9px;
-
             padding: 7px 13px;
             margin-bottom: 20px;
-
             color: #c9b5ff;
             background: rgba(149, 101, 255, 0.10);
-
             border: 1px solid rgba(149, 101, 255, 0.24);
             border-radius: 100px;
-
             font-size: 12px;
             font-weight: 800;
             letter-spacing: 1.5px;
@@ -278,26 +260,21 @@ window.addEventListener("resize", function () {
         /* ========================================
            NAVIGATION
         ======================================== */
-
         .navbar {
             position: sticky;
             top: 0;
             z-index: 100;
-
-            background: rgba(8, 11, 24, 0.78);
+            background: rgba(8, 11, 24, 0.85);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
-
             border-bottom: 1px solid rgba(255, 255, 255, 0.07);
         }
 
         .nav-inner {
             min-height: 78px;
-
             display: flex;
             align-items: center;
             justify-content: space-between;
-
             gap: 25px;
         }
 
@@ -305,24 +282,20 @@ window.addEventListener("resize", function () {
             display: inline-flex;
             align-items: center;
             gap: 12px;
-
             font-size: 19px;
             font-weight: 800;
             letter-spacing: -0.5px;
+            color: var(--text);
         }
 
         .brand-mark {
             width: 43px;
             height: 43px;
-
             display: grid;
             place-items: center;
-
             border-radius: 14px;
             background: var(--gradient);
-
             box-shadow: 0 5px 24px rgba(121, 91, 255, 0.27);
-
             font-size: 20px;
             font-weight: 900;
             color: white;
@@ -331,11 +304,9 @@ window.addEventListener("resize", function () {
         .brand small {
             display: block;
             margin-top: -4px;
-
             font-size: 10px;
             font-weight: 500;
             letter-spacing: 2px;
-
             color: var(--muted);
             text-transform: uppercase;
         }
@@ -359,42 +330,36 @@ window.addEventListener("resize", function () {
 
         .menu-toggle {
             display: none;
-
             width: 44px;
             height: 44px;
-
             border: 1px solid var(--border);
             border-radius: 12px;
-
             background: var(--surface);
             color: white;
-
             cursor: pointer;
         }
 
         /* ========================================
            BUTTONS
         ======================================== */
-
         .button {
             display: inline-flex;
             align-items: center;
             justify-content: center;
             gap: 10px;
-
             min-height: 49px;
             padding: 13px 21px;
-
             border: 1px solid transparent;
             border-radius: 13px;
-
             font-size: 14px;
             font-weight: 750;
-
+            cursor: pointer;
+            text-decoration: none;
             transition:
                 transform 0.25s ease,
                 box-shadow 0.25s ease,
-                background 0.25s ease;
+                background 0.25s ease,
+                border-color 0.25s ease;
         }
 
         .button:hover {
@@ -402,24 +367,26 @@ window.addEventListener("resize", function () {
         }
 
         .button-primary {
-            color: white;
+            color: #ffffff !important;
             background: var(--gradient);
-
             box-shadow: 0 8px 28px rgba(117, 91, 255, 0.22);
         }
 
         .button-primary:hover {
+            color: #ffffff !important;
             box-shadow: 0 12px 35px rgba(117, 91, 255, 0.38);
         }
 
         .button-secondary {
             background: rgba(255, 255, 255, 0.04);
-            border-color: var(--border);
-            color: white;
+            border: 1px solid var(--border);
+            color: #f5f7ff !important;
         }
 
         .button-secondary:hover {
             background: rgba(255, 255, 255, 0.09);
+            border-color: rgba(255, 255, 255, 0.2);
+            color: #ffffff !important;
         }
 
         .button-small {
@@ -431,7 +398,6 @@ window.addEventListener("resize", function () {
         /* ========================================
            HERO
         ======================================== */
-
         .hero {
             position: relative;
             padding: 100px 0 95px;
@@ -452,10 +418,8 @@ window.addEventListener("resize", function () {
 
         .hero h1 {
             max-width: 700px;
-
             font-size: clamp(43px, 6vw, 72px);
             line-height: 1.08;
-
             letter-spacing: -3.5px;
             margin-bottom: 25px;
         }
@@ -463,7 +427,6 @@ window.addEventListener("resize", function () {
         .hero-description {
             max-width: 570px;
             margin-bottom: 32px;
-
             color: var(--muted);
             font-size: 18px;
         }
@@ -478,7 +441,6 @@ window.addEventListener("resize", function () {
             display: flex;
             align-items: center;
             gap: 11px;
-
             margin-top: 29px;
             color: var(--muted);
             font-size: 13px;
@@ -487,40 +449,31 @@ window.addEventListener("resize", function () {
         .hero-note-icon {
             width: 29px;
             height: 29px;
-
             display: grid;
             place-items: center;
-
             border-radius: 9px;
             background: rgba(99, 230, 190, 0.10);
             color: var(--green);
         }
 
-        /* Hero visual */
-
         .hero-visual {
             min-height: 440px;
             position: relative;
-
             display: grid;
             place-items: center;
         }
 
         .orb {
             position: absolute;
-
             width: 340px;
             height: 340px;
-
             border-radius: 50%;
-
             background: linear-gradient(
                 135deg,
                 rgba(77, 141, 255, 0.24),
                 rgba(149, 101, 255, 0.19),
                 rgba(230, 91, 255, 0.13)
             );
-
             filter: blur(3px);
             animation: orb-float 8s ease-in-out infinite;
         }
@@ -529,7 +482,6 @@ window.addEventListener("resize", function () {
             content: "";
             position: absolute;
             inset: 20px;
-
             border: 1px solid rgba(255, 255, 255, 0.11);
             border-radius: 50%;
         }
@@ -537,22 +489,16 @@ window.addEventListener("resize", function () {
         .hero-panel {
             position: relative;
             z-index: 2;
-
             width: min(100%, 380px);
             padding: 29px;
-
             border: 1px solid rgba(255, 255, 255, 0.14);
             border-radius: 27px;
-
-            background: rgba(16, 21, 43, 0.80);
-
+            background: rgba(16, 21, 43, 0.85);
             backdrop-filter: blur(24px);
             -webkit-backdrop-filter: blur(24px);
-
             box-shadow:
                 0 35px 100px rgba(0, 0, 0, 0.40),
                 0 0 60px rgba(117, 91, 255, 0.08);
-
             animation: panel-float 6s ease-in-out infinite;
         }
 
@@ -560,7 +506,6 @@ window.addEventListener("resize", function () {
             display: flex;
             align-items: center;
             gap: 14px;
-
             padding-bottom: 23px;
             border-bottom: 1px solid var(--border);
         }
@@ -568,21 +513,16 @@ window.addEventListener("resize", function () {
         .orby-mark {
             width: 60px;
             height: 60px;
-
             display: grid;
             place-items: center;
-
             border-radius: 19px;
-
             background: linear-gradient(
                 135deg,
                 #5638e8,
                 #a43df1 55%,
                 #347eff
             );
-
             box-shadow: 0 9px 30px rgba(126, 76, 255, 0.3);
-
             font-size: 29px;
         }
 
@@ -598,7 +538,6 @@ window.addEventListener("resize", function () {
 
         .panel-label {
             margin: 23px 0 13px;
-
             color: #9da9c7;
             font-size: 11px;
             font-weight: 800;
@@ -610,13 +549,10 @@ window.addEventListener("resize", function () {
             display: flex;
             align-items: center;
             gap: 13px;
-
             margin-top: 10px;
             padding: 13px;
-
             border: 1px solid rgba(255, 255, 255, 0.06);
             border-radius: 15px;
-
             background: rgba(255, 255, 255, 0.035);
         }
 
@@ -624,13 +560,10 @@ window.addEventListener("resize", function () {
             width: 40px;
             height: 40px;
             flex-shrink: 0;
-
             display: grid;
             place-items: center;
-
             border-radius: 12px;
             background: rgba(149, 101, 255, 0.14);
-
             font-size: 19px;
         }
 
@@ -647,19 +580,14 @@ window.addEventListener("resize", function () {
         .floating-chip {
             position: absolute;
             z-index: 3;
-
             display: flex;
             align-items: center;
             gap: 9px;
-
             padding: 12px 15px;
-
             border: 1px solid rgba(255, 255, 255, 0.12);
             border-radius: 14px;
-
             background: rgba(18, 24, 47, 0.92);
             box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
-
             font-size: 12px;
             font-weight: 750;
         }
@@ -681,13 +609,11 @@ window.addEventListener("resize", function () {
         }
 
         /* ========================================
-           TRUST / BENEFITS STRIP
+           BENEFITS STRIP
         ======================================== */
-
         .benefit-strip {
             padding: 25px 0;
             border-block: 1px solid rgba(255, 255, 255, 0.07);
-
             background: rgba(255, 255, 255, 0.018);
         }
 
@@ -702,7 +628,6 @@ window.addEventListener("resize", function () {
             align-items: center;
             justify-content: center;
             gap: 12px;
-
             color: #d4daed;
             font-size: 14px;
             font-weight: 650;
@@ -716,21 +641,16 @@ window.addEventListener("resize", function () {
         /* ========================================
            FEATURED ORBYNIQ
         ======================================== */
-
         .featured-card {
             position: relative;
             overflow: hidden;
-
             display: grid;
             grid-template-columns: 1fr 0.8fr;
             align-items: center;
             gap: 55px;
-
             padding: 58px;
-
             border: 1px solid rgba(149, 101, 255, 0.25);
             border-radius: 30px;
-
             background:
                 radial-gradient(
                     ellipse at 90% 20%,
@@ -742,8 +662,7 @@ window.addEventListener("resize", function () {
                     rgba(18, 25, 51, 0.96),
                     rgba(12, 15, 34, 0.96)
                 );
-
-            box-shadow: 0 30px 90px rgba(0, 0, 0, 0.16);
+            box-shadow: 0 30px 90px rgba(0, 0, 0, 0.25);
         }
 
         .featured-content {
@@ -761,21 +680,16 @@ window.addEventListener("resize", function () {
         .featured-icon {
             width: 76px;
             height: 76px;
-
             display: grid;
             place-items: center;
-
             border-radius: 23px;
-
             background: linear-gradient(
                 135deg,
                 #5638e8,
                 #a43df1 55%,
                 #347eff
             );
-
             box-shadow: 0 12px 35px rgba(126, 76, 255, 0.27);
-
             font-size: 36px;
         }
 
@@ -796,7 +710,6 @@ window.addEventListener("resize", function () {
             font-size: clamp(30px, 4vw, 43px);
             line-height: 1.2;
             letter-spacing: -1.5px;
-
             margin-bottom: 20px;
         }
 
@@ -810,7 +723,6 @@ window.addEventListener("resize", function () {
             display: grid;
             grid-template-columns: repeat(2, minmax(0, 1fr));
             gap: 13px;
-
             margin-bottom: 30px;
             list-style: none;
         }
@@ -819,7 +731,6 @@ window.addEventListener("resize", function () {
             display: flex;
             align-items: flex-start;
             gap: 9px;
-
             color: #d9def0;
             font-size: 13px;
         }
@@ -832,20 +743,16 @@ window.addEventListener("resize", function () {
         .featured-visual {
             position: relative;
             min-height: 330px;
-
             display: grid;
             place-items: center;
         }
 
         .visual-ring {
             position: absolute;
-
             width: 285px;
             height: 285px;
-
             border: 1px solid rgba(149, 101, 255, 0.26);
             border-radius: 50%;
-
             box-shadow:
                 0 0 0 30px rgba(149, 101, 255, 0.035),
                 0 0 0 60px rgba(149, 101, 255, 0.025);
@@ -854,48 +761,37 @@ window.addEventListener("resize", function () {
         .visual-orby {
             position: relative;
             z-index: 2;
-
             width: 190px;
             height: 220px;
-
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             gap: 12px;
-
             border: 1px solid rgba(255, 255, 255, 0.17);
             border-radius: 28px;
-
             background: linear-gradient(
                 145deg,
                 rgba(123, 79, 255, 0.23),
                 rgba(45, 93, 190, 0.12)
             );
-
             backdrop-filter: blur(20px);
-
             box-shadow: 0 30px 70px rgba(0, 0, 0, 0.25);
-
             transform: rotate(-5deg);
         }
 
         .visual-orby .big-bell {
             width: 94px;
             height: 94px;
-
             display: grid;
             place-items: center;
-
             border-radius: 28px;
-
             background: linear-gradient(
                 135deg,
                 #5638e8,
                 #a43df1 55%,
                 #347eff
             );
-
             font-size: 48px;
             box-shadow: 0 12px 35px rgba(126, 76, 255, 0.3);
         }
@@ -914,7 +810,6 @@ window.addEventListener("resize", function () {
         /* ========================================
            ALL APPS
         ======================================== */
-
         .apps-grid {
             display: grid;
             grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -924,18 +819,13 @@ window.addEventListener("resize", function () {
         .app-card {
             position: relative;
             overflow: hidden;
-
             display: flex;
             flex-direction: column;
-
             min-height: 340px;
             padding: 28px;
-
             border: 1px solid var(--border);
             border-radius: var(--radius);
-
             background: var(--surface);
-
             transition:
                 transform 0.3s ease,
                 border-color 0.3s ease,
@@ -946,26 +836,20 @@ window.addEventListener("resize", function () {
         .app-card::before {
             content: "";
             position: absolute;
-
             width: 170px;
             height: 170px;
-
             top: -100px;
             right: -90px;
-
             border-radius: 50%;
             background: var(--card-glow, rgba(149, 101, 255, 0.16));
             filter: blur(15px);
-
             transition: transform 0.4s ease;
         }
 
         .app-card:hover {
             transform: translateY(-8px);
-
             border-color: rgba(149, 101, 255, 0.40);
             background: var(--surface-hover);
-
             box-shadow: 0 25px 60px rgba(0, 0, 0, 0.20);
         }
 
@@ -976,12 +860,10 @@ window.addEventListener("resize", function () {
         .app-card-top {
             position: relative;
             z-index: 1;
-
             display: flex;
             align-items: center;
             justify-content: space-between;
             gap: 15px;
-
             margin-bottom: 24px;
         }
 
@@ -989,26 +871,19 @@ window.addEventListener("resize", function () {
             width: 68px;
             height: 68px;
             flex-shrink: 0;
-
             display: grid;
             place-items: center;
-
             border: 1px solid rgba(255, 255, 255, 0.12);
             border-radius: 21px;
-
             background: var(--app-gradient);
-
             box-shadow: 0 12px 28px rgba(0, 0, 0, 0.20);
-
             font-size: 32px;
         }
 
         .app-type {
             padding: 6px 10px;
-
             border: 1px solid var(--border);
             border-radius: 100px;
-
             color: #b6bfd9;
             font-size: 10px;
             font-weight: 750;
@@ -1019,9 +894,7 @@ window.addEventListener("resize", function () {
         .app-card h3 {
             position: relative;
             z-index: 1;
-
             margin-bottom: 12px;
-
             font-size: 23px;
             letter-spacing: -0.7px;
         }
@@ -1029,10 +902,8 @@ window.addEventListener("resize", function () {
         .app-card > p {
             position: relative;
             z-index: 1;
-
             flex: 1;
             margin-bottom: 24px;
-
             color: var(--muted);
             font-size: 14px;
         }
@@ -1046,7 +917,6 @@ window.addEventListener("resize", function () {
         /* ========================================
            WHY RAI TECH LABS
         ======================================== */
-
         .why-grid {
             display: grid;
             grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -1055,27 +925,20 @@ window.addEventListener("resize", function () {
 
         .why-card {
             padding: 30px;
-
             border: 1px solid var(--border);
             border-radius: 21px;
-
             background: rgba(255, 255, 255, 0.025);
         }
 
         .why-icon {
             width: 52px;
             height: 52px;
-
             display: grid;
             place-items: center;
-
             margin-bottom: 22px;
-
             border-radius: 16px;
-
             background: rgba(149, 101, 255, 0.12);
             border: 1px solid rgba(149, 101, 255, 0.18);
-
             font-size: 24px;
         }
 
@@ -1092,7 +955,6 @@ window.addEventListener("resize", function () {
         /* ========================================
            CALL TO ACTION
         ======================================== */
-
         .cta-section {
             padding: 20px 0 110px;
         }
@@ -1100,14 +962,10 @@ window.addEventListener("resize", function () {
         .cta-box {
             position: relative;
             overflow: hidden;
-
             padding: 68px 35px;
-
             text-align: center;
-
             border: 1px solid rgba(149, 101, 255, 0.28);
             border-radius: 30px;
-
             background:
                 radial-gradient(
                     ellipse at 50% 120%,
@@ -1124,7 +982,6 @@ window.addEventListener("resize", function () {
         .cta-box h2 {
             max-width: 700px;
             margin: 0 auto 18px;
-
             font-size: clamp(31px, 4vw, 47px);
             line-height: 1.2;
             letter-spacing: -1.5px;
@@ -1139,10 +996,9 @@ window.addEventListener("resize", function () {
         /* ========================================
            FOOTER
         ======================================== */
-
         footer {
             border-top: 1px solid rgba(255, 255, 255, 0.07);
-            background: rgba(5, 7, 16, 0.60);
+            background: rgba(5, 7, 16, 0.80);
         }
 
         .footer-main {
@@ -1150,7 +1006,6 @@ window.addEventListener("resize", function () {
             align-items: center;
             justify-content: space-between;
             gap: 30px;
-
             padding: 35px 0;
         }
 
@@ -1178,9 +1033,7 @@ window.addEventListener("resize", function () {
 
         .footer-bottom {
             padding: 18px 0;
-
             border-top: 1px solid rgba(255, 255, 255, 0.06);
-
             color: #7f89a5;
             text-align: center;
             font-size: 12px;
@@ -1189,44 +1042,25 @@ window.addEventListener("resize", function () {
         /* ========================================
            ANIMATIONS
         ======================================== */
-
         @keyframes panel-float {
-            0%, 100% {
-                transform: translateY(0);
-            }
-
-            50% {
-                transform: translateY(-9px);
-            }
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-9px); }
         }
 
         @keyframes chip-float {
-            0%, 100% {
-                transform: translateY(0);
-            }
-
-            50% {
-                transform: translateY(-10px);
-            }
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
         }
 
         @keyframes orb-float {
-            0%, 100% {
-                transform: scale(1);
-            }
-
-            50% {
-                transform: scale(1.06);
-            }
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.06); }
         }
 
         .reveal {
             opacity: 0;
             transform: translateY(22px);
-
-            transition:
-                opacity 0.7s ease,
-                transform 0.7s ease;
+            transition: opacity 0.7s ease, transform 0.7s ease;
         }
 
         .reveal.visible {
@@ -1237,257 +1071,105 @@ window.addEventListener("resize", function () {
         /* ========================================
            RESPONSIVE DESIGN
         ======================================== */
-
         @media (max-width: 1000px) {
-            .hero-grid {
-                gap: 30px;
-            }
-
-            .hero h1 {
-                letter-spacing: -2.5px;
-            }
-
-            .featured-card {
-                padding: 38px;
-                gap: 25px;
-            }
-
-            .apps-grid {
-                grid-template-columns: repeat(2, minmax(0, 1fr));
-            }
-
-            .app-card:last-child {
-                grid-column: 1 / -1;
-            }
-
-            .why-grid {
-                grid-template-columns: repeat(2, minmax(0, 1fr));
-            }
-
-            .why-card:last-child {
-                grid-column: 1 / -1;
-            }
+            .hero-grid { gap: 30px; }
+            .hero h1 { letter-spacing: -2.5px; }
+            .featured-card { padding: 38px; gap: 25px; }
+            .apps-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+            .app-card:last-child { grid-column: 1 / -1; }
+            .why-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+            .why-card:last-child { grid-column: 1 / -1; }
         }
 
         @media (max-width: 760px) {
             .container {
-                width: min(
-                    100% - 36px,
-                    var(--container)
-                );
+                width: min(100% - 36px, var(--container));
             }
 
-            .section {
-                padding: 75px 0;
-            }
-
-            .nav-inner {
-                min-height: 70px;
-            }
+            .section { padding: 75px 0; }
+            .nav-inner { min-height: 70px; position: relative; }
 
             .menu-toggle {
                 display: grid;
                 place-items: center;
                 font-size: 23px;
+                cursor: pointer;
             }
 
             .nav-links {
                 display: none;
-
                 position: absolute;
                 top: 70px;
                 left: 0;
                 right: 0;
-
+                width: 100%;
                 padding: 20px 24px 25px;
-
                 flex-direction: column;
                 align-items: stretch;
                 gap: 17px;
-
                 border-bottom: 1px solid var(--border);
-                background: rgba(8, 11, 24, 0.97);
-
+                background: rgba(8, 11, 24, 0.98);
                 backdrop-filter: blur(20px);
+                -webkit-backdrop-filter: blur(20px);
+                z-index: 101;
             }
 
             .nav-links.open {
-                display: flex;
+                display: flex !important;
             }
 
             .nav-links .button {
                 width: 100%;
             }
 
-            .hero {
-                padding: 72px 0 65px;
-            }
+            .hero { padding: 72px 0 65px; }
+            .hero-grid { grid-template-columns: 1fr; gap: 30px; }
+            .hero-content { text-align: center; }
+            .hero h1 { font-size: clamp(43px, 10vw, 62px); letter-spacing: -2.5px; }
+            .hero-description { margin-inline: auto; font-size: 16px; }
+            .hero-actions { justify-content: center; }
+            .hero-note { justify-content: center; }
+            .hero-visual { min-height: 410px; }
 
-            .hero-grid {
-                grid-template-columns: 1fr;
-                gap: 30px;
-            }
+            .orb { width: 285px; height: 285px; }
+            .hero-panel { width: min(100%, 350px); }
+            .floating-chip-one { right: 0; top: 35px; }
+            .floating-chip-two { left: 0; bottom: 30px; }
 
-            .hero-content {
-                text-align: center;
-            }
+            .benefit-grid { grid-template-columns: 1fr; gap: 17px; }
+            .benefit { justify-content: flex-start; max-width: 300px; margin-inline: auto; width: 100%; }
 
-            .hero h1 {
-                font-size: clamp(43px, 10vw, 62px);
-                letter-spacing: -2.5px;
-            }
+            .section-heading { margin-bottom: 35px; }
+            .featured-card { grid-template-columns: 1fr; padding: 29px 23px; }
+            .featured-content h2 { font-size: 34px; }
+            .featured-visual { min-height: 290px; }
+            .visual-ring { width: 230px; height: 230px; }
+            .feature-list { grid-template-columns: 1fr; }
 
-            .hero-description {
-                margin-inline: auto;
-                font-size: 16px;
-            }
+            .apps-grid { grid-template-columns: 1fr; }
+            .app-card:last-child { grid-column: auto; }
+            .app-card { min-height: 300px; }
 
-            .hero-actions {
-                justify-content: center;
-            }
+            .why-grid { grid-template-columns: 1fr; }
+            .why-card:last-child { grid-column: auto; }
 
-            .hero-note {
-                justify-content: center;
-            }
+            .cta-section { padding-bottom: 75px; }
+            .cta-box { padding: 48px 23px; }
 
-            .hero-visual {
-                min-height: 410px;
-            }
-
-            .orb {
-                width: 285px;
-                height: 285px;
-            }
-
-            .hero-panel {
-                width: min(100%, 350px);
-            }
-
-            .floating-chip-one {
-                right: 0;
-                top: 35px;
-            }
-
-            .floating-chip-two {
-                left: 0;
-                bottom: 30px;
-            }
-
-            .benefit-grid {
-                grid-template-columns: 1fr;
-                gap: 17px;
-            }
-
-            .benefit {
-                justify-content: flex-start;
-                max-width: 300px;
-                margin-inline: auto;
-                width: 100%;
-            }
-
-            .section-heading {
-                margin-bottom: 35px;
-            }
-
-            .featured-card {
-                grid-template-columns: 1fr;
-                padding: 29px 23px;
-            }
-
-            .featured-content h2 {
-                font-size: 34px;
-            }
-
-            .featured-visual {
-                min-height: 290px;
-            }
-
-            .visual-ring {
-                width: 230px;
-                height: 230px;
-            }
-
-            .feature-list {
-                grid-template-columns: 1fr;
-            }
-
-            .apps-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .app-card:last-child {
-                grid-column: auto;
-            }
-
-            .app-card {
-                min-height: 300px;
-            }
-
-            .why-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .why-card:last-child {
-                grid-column: auto;
-            }
-
-            .cta-section {
-                padding-bottom: 75px;
-            }
-
-            .cta-box {
-                padding: 48px 23px;
-            }
-
-            .footer-main {
-                flex-direction: column;
-                align-items: flex-start;
-            }
+            .footer-main { flex-direction: column; align-items: flex-start; }
         }
 
         @media (max-width: 400px) {
-            .brand {
-                font-size: 16px;
-            }
-
-            .brand-mark {
-                width: 39px;
-                height: 39px;
-            }
-
-            .hero h1 {
-                font-size: 40px;
-            }
-
-            .hero-actions .button {
-                width: 100%;
-            }
-
-            .hero-visual {
-                min-height: 390px;
-            }
-
-            .hero-panel {
-                padding: 20px;
-            }
-
-            .floating-chip {
-                padding: 9px 11px;
-                font-size: 10px;
-            }
-
-            .featured-brand h3 {
-                font-size: 25px;
-            }
-
-            .featured-icon {
-                width: 64px;
-                height: 64px;
-            }
-
-            .footer-links {
-                gap: 15px;
-            }
+            .brand { font-size: 16px; }
+            .brand-mark { width: 39px; height: 39px; }
+            .hero h1 { font-size: 38px; }
+            .hero-actions .button { width: 100%; }
+            .hero-visual { min-height: 390px; }
+            .hero-panel { padding: 20px; }
+            .floating-chip { padding: 9px 11px; font-size: 10px; }
+            .featured-brand h3 { font-size: 25px; }
+            .featured-icon { width: 64px; height: 64px; }
+            .footer-links { gap: 15px; }
         }
 
         @media (prefers-reduced-motion: reduce) {
@@ -1513,13 +1195,11 @@ window.addEventListener("resize", function () {
     <!-- ========================================
          NAVIGATION
     ======================================== -->
-
     <nav class="navbar" aria-label="Main navigation">
         <div class="container nav-inner">
 
             <a class="brand" href="#home" aria-label="Rai Tech Labs home">
                 <span class="brand-mark" aria-hidden="true">R</span>
-
                 <span>
                     Rai Tech Labs
                     <small>Technology & Innovation</small>
@@ -1556,23 +1236,25 @@ window.addEventListener("resize", function () {
         </div>
     </nav>
 
-<!-- HORIZONTAL ADSENSE AD -->
-<section class="ad-section horizontal-ad-section">
-    <div>
-        <div class="ad-label">Advertisement</div>
 
-        <div class="ad-container">
-            <ins class="adsbygoogle ad-horizontal"
-                 style="display:inline-block;width:728px;height:90px"
-                 data-ad-client="ca-pub-4125267713715180"
-                 data-ad-slot="9567941129"></ins>
+    <!-- ========================================
+         HORIZONTAL ADSENSE AD
+    ======================================== -->
+    <section class="ad-section horizontal-ad-section">
+        <div>
+            <div class="ad-label">Advertisement</div>
+            <div class="ad-container">
+                <ins class="adsbygoogle ad-horizontal"
+                     data-ad-client="ca-pub-4125267713715180"
+                     data-ad-slot="9567941129"></ins>
+            </div>
         </div>
-    </div>
-</section>
+    </section>
+
+
     <!-- ========================================
          HERO SECTION
     ======================================== -->
-
     <main>
 
         <section class="hero" id="home">
@@ -1599,7 +1281,6 @@ window.addEventListener("resize", function () {
                     </p>
 
                     <div class="hero-actions">
-
                         <a href="#apps" class="button button-primary">
                             Explore Our Apps <span aria-hidden="true">→</span>
                         </a>
@@ -1607,7 +1288,6 @@ window.addEventListener("resize", function () {
                         <a href="#about" class="button button-secondary">
                             About Rai Tech Labs
                         </a>
-
                     </div>
 
                     <div class="hero-note">
@@ -1617,9 +1297,7 @@ window.addEventListener("resize", function () {
 
                 </div>
 
-
                 <!-- Decorative product preview -->
-
                 <div class="hero-visual" aria-label="ORBYNIQ feature preview">
 
                     <div class="orb" aria-hidden="true"></div>
@@ -1632,16 +1310,11 @@ window.addEventListener("resize", function () {
                     <div class="hero-panel">
 
                         <div class="panel-top">
-
-                            <div class="orby-mark" aria-hidden="true">
-                                🔔
-                            </div>
-
+                            <div class="orby-mark" aria-hidden="true">🔔</div>
                             <div>
                                 <h3>ORBYNIQ</h3>
                                 <p>Your Digital Life, Organized.</p>
                             </div>
-
                         </div>
 
                         <p class="panel-label">Explore the experience</p>
@@ -1686,7 +1359,6 @@ window.addEventListener("resize", function () {
         <!-- ========================================
              BENEFITS STRIP
         ======================================== -->
-
         <section class="benefit-strip" aria-label="Our approach">
             <div class="container benefit-grid">
 
@@ -1712,7 +1384,6 @@ window.addEventListener("resize", function () {
         <!-- ========================================
              FEATURED ORBYNIQ
         ======================================== -->
-
         <section class="section" id="featured">
             <div class="container">
 
@@ -1721,16 +1392,11 @@ window.addEventListener("resize", function () {
                     <div class="featured-content">
 
                         <div class="featured-brand">
-
-                            <div class="featured-icon" aria-hidden="true">
-                                🔔
-                            </div>
-
+                            <div class="featured-icon" aria-hidden="true">🔔</div>
                             <div>
                                 <h3>ORBYNIQ</h3>
                                 <p>Featured App</p>
                             </div>
-
                         </div>
 
                         <h2>
@@ -1752,17 +1418,14 @@ window.addEventListener("resize", function () {
                                 <span class="check">✓</span>
                                 Notification history
                             </li>
-
                             <li>
                                 <span class="check">✓</span>
                                 Smart OTP management
                             </li>
-
                             <li>
                                 <span class="check">✓</span>
                                 Financial insights
                             </li>
-
                             <li>
                                 <span class="check">✓</span>
                                 Search and organization tools
@@ -1780,22 +1443,14 @@ window.addEventListener("resize", function () {
 
                     </div>
 
-
                     <div class="featured-visual" aria-hidden="true">
-
                         <div class="visual-ring"></div>
 
                         <div class="visual-orby">
-
-                            <div class="big-bell">
-                                🔔
-                            </div>
-
+                            <div class="big-bell">🔔</div>
                             <strong>ORBYNIQ</strong>
                             <small>STAY ORGANIZED</small>
-
                         </div>
-
                     </div>
 
                 </div>
@@ -1803,25 +1458,26 @@ window.addEventListener("resize", function () {
             </div>
         </section>
 
-<!-- SQUARE ADSENSE AD -->
-<section class="ad-section square-ad-section">
-    <div>
-        <div class="ad-label">Advertisement</div>
 
-        <div class="ad-container">
-            <ins class="adsbygoogle ad-square"
-                 style="display:inline-block;width:300px;height:250px"
-                 data-ad-client="ca-pub-4125267713715180"
-                 data-ad-slot="9943345641"></ins>
-        </div>
-    </div>
-</section>
+        <!-- ========================================
+             SQUARE ADSENSE AD
+        ======================================== -->
+        <section class="ad-section square-ad-section">
+            <div>
+                <div class="ad-label">Advertisement</div>
+                <div class="ad-container">
+                    <ins class="adsbygoogle ad-square"
+                         data-ad-client="ca-pub-4125267713715180"
+                         data-ad-slot="9943345641"></ins>
+                </div>
+            </div>
+        </section>
+
+
         <!-- ========================================
              OUR APPS
         ======================================== -->
-
         <section class="section" id="apps">
-
             <div class="container">
 
                 <div class="section-heading reveal">
@@ -1843,11 +1499,9 @@ window.addEventListener("resize", function () {
 
                 </div>
 
-
                 <div class="apps-grid">
 
                     <!-- ORBYNIQ -->
-
                     <article
                         class="app-card reveal"
                         style="
@@ -1855,15 +1509,9 @@ window.addEventListener("resize", function () {
                             --card-glow: rgba(149, 101, 255, 0.19);
                         "
                     >
-
                         <div class="app-card-top">
-
-                            <div class="app-icon" aria-hidden="true">
-                                🔔
-                            </div>
-
+                            <div class="app-icon" aria-hidden="true">🔔</div>
                             <span class="app-type">Productivity</span>
-
                         </div>
 
                         <h3>ORBYNIQ</h3>
@@ -1883,12 +1531,9 @@ window.addEventListener("resize", function () {
                         >
                             Explore ORBYNIQ ↗
                         </a>
-
                     </article>
 
-
                     <!-- MATH LEARNING -->
-
                     <article
                         class="app-card reveal"
                         style="
@@ -1896,15 +1541,9 @@ window.addEventListener("resize", function () {
                             --card-glow: rgba(22, 119, 255, 0.18);
                         "
                     >
-
                         <div class="app-card-top">
-
-                            <div class="app-icon" aria-hidden="true">
-                                📘
-                            </div>
-
+                            <div class="app-icon" aria-hidden="true">📘</div>
                             <span class="app-type">Education</span>
-
                         </div>
 
                         <h3>Math Learning</h3>
@@ -1924,12 +1563,9 @@ window.addEventListener("resize", function () {
                         >
                             Explore App ↗
                         </a>
-
                     </article>
 
-
                     <!-- ENGLISH LEARNING -->
-
                     <article
                         class="app-card reveal"
                         style="
@@ -1937,15 +1573,9 @@ window.addEventListener("resize", function () {
                             --card-glow: rgba(14, 175, 145, 0.15);
                         "
                     >
-
                         <div class="app-card-top">
-
-                            <div class="app-icon" aria-hidden="true">
-                                📖
-                            </div>
-
+                            <div class="app-icon" aria-hidden="true">📖</div>
                             <span class="app-type">Education</span>
-
                         </div>
 
                         <h3>English Learning</h3>
@@ -1964,22 +1594,18 @@ window.addEventListener("resize", function () {
                         >
                             Explore App ↗
                         </a>
-
                     </article>
 
                 </div>
 
             </div>
-
         </section>
 
 
         <!-- ========================================
              ABOUT RAI TECH LABS
         ======================================== -->
-
         <section class="section" id="about">
-
             <div class="container">
 
                 <div class="section-heading reveal">
@@ -2004,69 +1630,45 @@ window.addEventListener("resize", function () {
 
                 </div>
 
-
                 <div class="why-grid">
 
                     <article class="why-card reveal">
-
-                        <div class="why-icon" aria-hidden="true">
-                            ◈
-                        </div>
-
+                        <div class="why-icon" aria-hidden="true">◈</div>
                         <h3>Purposeful Design</h3>
-
                         <p>
                             We focus on clear interfaces and useful features
                             that make apps easier to understand and use.
                         </p>
-
                     </article>
 
-
                     <article class="why-card reveal">
-
-                        <div class="why-icon" aria-hidden="true">
-                            ⚡
-                        </div>
-
+                        <div class="why-icon" aria-hidden="true">⚡</div>
                         <h3>Everyday Utility</h3>
-
                         <p>
                             Our apps are designed around practical needs,
                             from learning to organizing your digital life.
                         </p>
-
                     </article>
 
-
                     <article class="why-card reveal">
-
-                        <div class="why-icon" aria-hidden="true">
-                            ✧
-                        </div>
-
+                        <div class="why-icon" aria-hidden="true">✧</div>
                         <h3>Continuous Improvement</h3>
-
                         <p>
                             We aim to improve our apps through thoughtful
                             development, refinements, and user feedback.
                         </p>
-
                     </article>
 
                 </div>
 
             </div>
-
         </section>
 
 
         <!-- ========================================
              FINAL CALL TO ACTION
         ======================================== -->
-
         <section class="cta-section">
-
             <div class="container">
 
                 <div class="cta-box reveal">
@@ -2100,56 +1702,47 @@ window.addEventListener("resize", function () {
                 </div>
 
             </div>
-
         </section>
-<!-- VERTICAL ADSENSE AD -->
-<section class="ad-section vertical-ad-section">
-    <div>
-        <div class="ad-label">Advertisement</div>
 
-        <div class="ad-container">
-            <ins class="adsbygoogle ad-vertical"
-                 style="display:inline-block;width:300px;height:600px"
-                 data-ad-client="ca-pub-4125267713715180"
-                 data-ad-slot="9560202268"></ins>
-        </div>
-    </div>
-</section>
+
+        <!-- ========================================
+             VERTICAL ADSENSE AD
+        ======================================== -->
+        <section class="ad-section vertical-ad-section">
+            <div>
+                <div class="ad-label">Advertisement</div>
+                <div class="ad-container">
+                    <ins class="adsbygoogle ad-vertical"
+                         data-ad-client="ca-pub-4125267713715180"
+                         data-ad-slot="9560202268"></ins>
+                </div>
+            </div>
+        </section>
+
     </main>
 
 
     <!-- ========================================
          FOOTER
     ======================================== -->
-
     <footer>
-
         <div class="container footer-main">
 
             <div class="footer-brand">
-
                 <a class="brand" href="#home">
                     <span class="brand-mark" aria-hidden="true">R</span>
-
                     <span>
                         Rai Tech Labs
                         <small>Technology & Innovation</small>
                     </span>
                 </a>
-
-                <p>
-                    Smart, simple, and useful apps for everyday life.
-                </p>
-
+                <p>Smart, simple, and useful apps for everyday life.</p>
             </div>
 
-
             <div class="footer-links">
-
                 <a href="#home">Home</a>
                 <a href="#apps">Our Apps</a>
                 <a href="#about">About Us</a>
-
                 <a
                     href="https://play.google.com/store/apps/details?id=com.manager.notifyvault"
                     target="_blank"
@@ -2157,57 +1750,50 @@ window.addEventListener("resize", function () {
                 >
                     Google Play ↗
                 </a>
-
             </div>
 
         </div>
-
 
         <div class="footer-bottom">
             <div class="container">
-                © <span id="currentYear">2026</span>
-                Rai Tech Labs. All rights reserved.
+                © <span id="currentYear">2026</span> Rai Tech Labs. All rights reserved.
             </div>
         </div>
-
     </footer>
 
 
     <!-- ========================================
-         INTERACTIONS
+         INTERACTIONS & ADSENSE INITIALIZATION
     ======================================== -->
-
     <script>
-        // Mobile navigation
+        // Mobile navigation toggle
         const menuToggle = document.getElementById("menuToggle");
         const navLinks = document.getElementById("navLinks");
 
-        menuToggle.addEventListener("click", () => {
-            const isOpen = navLinks.classList.toggle("open");
-
-            menuToggle.setAttribute("aria-expanded", String(isOpen));
-            menuToggle.setAttribute(
-                "aria-label",
-                isOpen ? "Close navigation menu" : "Open navigation menu"
-            );
-
-            menuToggle.textContent = isOpen ? "✕" : "☰";
-        });
-
-        // Close the mobile menu after choosing a section
-        navLinks.querySelectorAll("a").forEach((link) => {
-            link.addEventListener("click", () => {
-                navLinks.classList.remove("open");
-
-                menuToggle.setAttribute("aria-expanded", "false");
-                menuToggle.setAttribute("aria-label", "Open navigation menu");
-                menuToggle.textContent = "☰";
+        if (menuToggle && navLinks) {
+            menuToggle.addEventListener("click", () => {
+                const isOpen = navLinks.classList.toggle("open");
+                menuToggle.setAttribute("aria-expanded", String(isOpen));
+                menuToggle.setAttribute(
+                    "aria-label",
+                    isOpen ? "Close navigation menu" : "Open navigation menu"
+                );
+                menuToggle.textContent = isOpen ? "✕" : "☰";
             });
-        });
 
-        // Reveal sections as the user scrolls
+            // Close mobile menu when a navigation link is clicked
+            navLinks.querySelectorAll("a").forEach((link) => {
+                link.addEventListener("click", () => {
+                    navLinks.classList.remove("open");
+                    menuToggle.setAttribute("aria-expanded", "false");
+                    menuToggle.setAttribute("aria-label", "Open navigation menu");
+                    menuToggle.textContent = "☰";
+                });
+            });
+        }
+
+        // Section reveal animation on scroll
         const revealElements = document.querySelectorAll(".reveal");
-
         if ("IntersectionObserver" in window) {
             const observer = new IntersectionObserver(
                 (entries, currentObserver) => {
@@ -2218,9 +1804,7 @@ window.addEventListener("resize", function () {
                         }
                     });
                 },
-                {
-                    threshold: 0.12
-                }
+                { threshold: 0.12 }
             );
 
             revealElements.forEach((element) => {
@@ -2232,19 +1816,42 @@ window.addEventListener("resize", function () {
             });
         }
 
-        // Automatically update the footer year
-        document.getElementById("currentYear").textContent =
-            new Date().getFullYear();
-        // Initialize Google AdSense units
-document.addEventListener("DOMContentLoaded", function () {
-    document.querySelectorAll(".adsbygoogle").forEach(function (ad) {
-        try {
-            (window.adsbygoogle = window.adsbygoogle || []).push({});
-        } catch (error) {
-            console.error("AdSense initialization error:", error);
+        // Dynamic footer copyright year
+        const currentYearEl = document.getElementById("currentYear");
+        if (currentYearEl) {
+            currentYearEl.textContent = new Date().getFullYear();
         }
-    });
-});
+
+        // Safe Google AdSense initialization (guards against duplicate pushes and hidden units)
+        function initializeAds() {
+            document.querySelectorAll(".adsbygoogle").forEach(function (ad) {
+                if (ad.getAttribute("data-adsbygoogle-status") === "done" || ad.dataset.initialized === "true") {
+                    return;
+                }
+                if (ad.offsetWidth === 0 && ad.offsetHeight === 0) {
+                    return;
+                }
+                try {
+                    (window.adsbygoogle = window.adsbygoogle || []).push({});
+                    ad.dataset.initialized = "true";
+                } catch (error) {
+                    console.error("AdSense initialization error:", error);
+                }
+            });
+        }
+
+        if (document.readyState === "loading") {
+            document.addEventListener("DOMContentLoaded", initializeAds);
+        } else {
+            initializeAds();
+        }
+
+        // Refresh check after viewport resize
+        let adResizeTimeout;
+        window.addEventListener("resize", function () {
+            clearTimeout(adResizeTimeout);
+            adResizeTimeout = setTimeout(initializeAds, 300);
+        });
     </script>
 
 </body>
