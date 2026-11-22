@@ -76,10 +76,38 @@
     padding: 45px 0 65px;
 }
 
-@media (max-width: 760px) {
-    .horizontal-ad-section {
-        display: none;
-    }
+// Initialize visible Google AdSense units
+function initializeAds() {
+    document.querySelectorAll(".adsbygoogle").forEach(function (ad) {
+        // Prevent duplicate initialization
+        if (ad.dataset.initialized === "true") {
+            return;
+        }
+
+        // Skip ads inside hidden containers
+        if (ad.getBoundingClientRect().width === 0) {
+            return;
+        }
+
+        try {
+            (window.adsbygoogle = window.adsbygoogle || []).push({});
+            ad.dataset.initialized = "true";
+        } catch (error) {
+            console.error("AdSense initialization error:", error);
+        }
+    });
+}
+
+document.addEventListener("DOMContentLoaded", initializeAds);
+
+// Initialize an ad if its container becomes visible after resizing
+let adResizeTimeout;
+
+window.addEventListener("resize", function () {
+    clearTimeout(adResizeTimeout);
+
+    adResizeTimeout = setTimeout(initializeAds, 300);
+});
 
     .square-ad-section {
         padding: 25px 0;
